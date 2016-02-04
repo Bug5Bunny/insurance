@@ -10,7 +10,7 @@ import com.sombrainc.insurance.util.Constant.Connect;
 public class InsuranceCompanyController {
 
 	private static final Scanner scanner = new Scanner(System.in);
-	private static final InsuranceCompanyService service = new InsuranceCompanyService();
+	private final InsuranceCompanyService service = new InsuranceCompanyService();
 
 	public List<InsuranceCompany> chooseSource() {
 		System.out.println("Input own source or choose existing");

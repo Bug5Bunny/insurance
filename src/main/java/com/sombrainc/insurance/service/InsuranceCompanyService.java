@@ -1,6 +1,5 @@
 package com.sombrainc.insurance.service;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,18 +65,10 @@ public class InsuranceCompanyService {
 			row.createCell(3).setCellValue(list.get(i).getCity());
 			row.createCell(4).setCellValue(list.get(i).getPhone());
 		}
-		FileOutputStream fileOut = null;
-		try {
-			fileOut = new FileOutputStream(filename);
-		} catch (FileNotFoundException e) {
+		try (FileOutputStream fileOut = new FileOutputStream(filename)){
+			wb.write(fileOut);
+		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				wb.write(fileOut);
-				fileOut.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 }
